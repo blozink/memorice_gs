@@ -2,32 +2,7 @@ body {
   font-family: "Raleway", sans-serif;
 }
 
-#Mis-trabajos .image-top {
-  background-repeat: no-repeat;
-  height: 200px;
-  width: 200px;
-  background-size: cover;
-  background-position: center;
-}
-
-/* Contacto */
-
-#Contacto form label {
-  font-weight: 700;
-  color: #373a3c;
-}
-
-@media (max-width: 768px) {
-  #Contacto form label {
-    font-weight: 400;
-  }
-
-  .navbar-brand{
-    width: 100px;
-  }
-
-}
-
+/* Estilos para las cartas y las imágenes de fondo */
 .card {
   cursor: pointer;
   transition: transform 0.6s;
@@ -39,16 +14,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f0f0f0; /* Fondo de carta boca abajo */
-}
-
-/* Estilo para las cartas volteadas */
-.card.flipped .image-top {
-  display: block;
-}
-
-.card.flipped .card-back {
-  display: none;
+  background-color: #f0f0f0;
 }
 
 .image-top,
@@ -57,37 +23,79 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-size: contain; /* Asegura que la imagen se ajuste dentro del contenedor sin recortarse */
-  background-repeat: no-repeat; /* No repetir la imagen */
-  background-position: center; /* Centrar la imagen dentro del contenedor */
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
   top: 0;
   left: 0;
 }
 
-/* Inicialmente, el dorso de la carta se muestra y el frente está oculto */
-.image-top {
+.card.flipped .image-top {
+  display: block;
+}
+
+.card.flipped .card-back {
   display: none;
 }
 
-/* El dorso de la carta puede tener un color de fondo o incluso una imagen */
 .card-back {
-  background-image: url("back-a.png"); /* Color de ejemplo para el dorso de la carta */
+  background-image: url("back-a.png");
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* Estilos para los contenedores .row y .col */
 .row {
   display: flex;
-  justify-content: center; /* Centra los elementos horizontalmente en la fila */
+  justify-content: center;
 }
 
-/* Centrar cada tarjeta dentro de su columna */
 .col-4, .col-sm-4 {
   display: flex;
-  justify-content: center; /* Centra horizontalmente el contenido de la columna */
-  align-items: center; /* Centra verticalmente el contenido de la columna */
-  /* Define una altura para la columna para permitir el centrado vertical */
-  
+  justify-content: center;
+  align-items: center;
 }
 
+/* Estilos para elementos de formulario de contacto (si los tienes) */
+#Contacto form label {
+  font-weight: 700;
+  color: #373a3c;
+}
+
+/* Media queries para ajustar los elementos de formulario de contacto y la barra de navegación */
+@media (max-width: 768px) {
+  #Contacto form label {
+    font-weight: 400;
+  }
+
+  .navbar-brand {
+    width: 100px;
+  }
+
+  /* Ajustes responsivos para las cartas */
+  .card {
+    width: 90px;
+    height: 100px;
+  }
+}
+
+/* Estilos para las imágenes del encabezado y pie de página */
+#Acerca-de-mi img,
+.footer img {
+  width: 500px; /* o el tamaño que prefieras para pantallas grandes */
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  #Acerca-de-mi img,
+  .footer img {
+    width: 80%; /* o cualquier otro tamaño que se ajuste mejor a pantallas pequeñas */
+    margin: 0 auto; /* Centra la imagen */
+  }
+}
+
+.footer img {
+  max-width: 100%; /* Hace que la imagen no sea más ancha que su contenedor */
+  height: auto; /* Mantiene la relación de aspecto */
+}
