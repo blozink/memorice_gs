@@ -79,8 +79,10 @@ function flipCard() {
     if (selectedCards.length === 2 || this.classList.contains('flipped')) {
         return;
     }
-    
+
+    touchSound.currentTime = 0; // Reinicia el audio a 0
     touchSound.play(); // Reproduce el sonido de toque
+
     this.classList.add('flipped');
     selectedCards.push(this);
     
@@ -88,6 +90,9 @@ function flipCard() {
         checkForMatch();
     }
 }
+
+
+
 
 
 function checkForMatch() {
@@ -186,6 +191,11 @@ function endGame(won) {
 
 }
 
+function playTouchSound() {
+    touchSound.currentTime = 0; // Reinicia el sonido
+    touchSound.play(); // Reproduce el sonido
+}
+
 
 
 function showEndGamePopup(won) {
@@ -198,12 +208,14 @@ function showEndGamePopup(won) {
 
 
     playAgainButton.onclick = function() {
-        touchSound.play(); // Reproduce el sonido de toque
+        playTouchSound(); // Reproduce el sonido de toque
         setTimeout(function() { // Agrega un pequeño retraso para permitir que el sonido se inicie antes de cambiar de página
             window.location.href = 'index.html'; // Redirecciona al usuario a index.html
         }, 200);
     };
 }
+
+
 
 
 
