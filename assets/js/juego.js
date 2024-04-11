@@ -1,3 +1,32 @@
+
+
+// Carga los archivos de audio
+const backgroundMusic = new Audio('assets/audio/fondo.mp3');
+const victorySound = new Audio('assets/audio/victoria.mp3');
+const defeatSound = new Audio('assets/audio/derrota.mp3');
+const touchSound = new Audio('assets/audio/toque.mp3');
+
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    const playButton = document.getElementById('play-button');
+    if(playButton) {
+        playButton.addEventListener('click', function() {
+            // Reproduce el sonido de toque y redirecciona
+            const touchSound = new Audio('assets/audio/toque.mp3');
+            touchSound.play();
+            setTimeout(function() {
+                window.location.href = 'juego.html';
+            }, 200); // Retraso para permitir que el sonido se reproduzca
+        });
+    }
+});
+
+
+
+// Opcional: Configurar la música de fondo para que se repita
+backgroundMusic.loop = true;
+
+
 let cards = [
     'assets/img/A.png', 'assets/img/A.png',
     'assets/img/B.png', 'assets/img/B.png',
@@ -45,11 +74,13 @@ function createBoard() {
     });
 }
 
+
 function flipCard() {
     if (selectedCards.length === 2 || this.classList.contains('flipped')) {
         return;
     }
     
+    touchSound.play(); // Reproduce el sonido de toque
     this.classList.add('flipped');
     selectedCards.push(this);
     
@@ -57,6 +88,7 @@ function flipCard() {
         checkForMatch();
     }
 }
+
 
 function checkForMatch() {
     const isMatch = selectedCards[0].getElementsByClassName('image-top')[0].style.backgroundImage ===
@@ -76,14 +108,17 @@ function checkForMatch() {
     }
 }
 
+let activeInterval; // Referencia global para el intervalo activo
+
 function startCountdown(seconds, messagePrefix, callback) {
     let counter = seconds;
     displayStatus(`${messagePrefix} `, counter);
-    const interval = setInterval(() => {
+    clearInterval(activeInterval); // Limpiar cualquier intervalo previo
+    activeInterval = setInterval(() => {
         counter--;
         displayStatus(`${messagePrefix} `, counter);
         if (counter <= 0) {
-            clearInterval(interval);
+            clearInterval(activeInterval);
             callback();
         }
     }, 1000);
@@ -91,7 +126,9 @@ function startCountdown(seconds, messagePrefix, callback) {
 
 
 
+
 function gameSequence() {
+    backgroundMusic.play();
     startCountdown(5, 'El juego comenzará en', function() {
         flipAllCards(true);
         startCountdown(10, 'Tiempo para memorizar', function() {
@@ -102,6 +139,9 @@ function gameSequence() {
         });
     });
 }
+
+
+
 
 
 
@@ -126,24 +166,42 @@ function displayStatus(message, countdown) {
     }
 }
 
+
+
 function endGame(won) {
-    clearTimeout(gameTimeout);
-    clearTimeout(memorizeTimeout);
+    clearInterval(activeInterval);
+    backgroundMusic.pause(); // Detiene la música de fondo
+    backgroundMusic.currentTime = 0; // Opcional: rebobina la música de fondo
+
+
+    if (won) {
+        victorySound.play(); // Reproduce el sonido de victoria
+    } else {
+        defeatSound.play(); // Reproduce el sonido de derrota
+    }
+
     const message = won ? '¡Felicidades, has ganado!' : 'Perdiste, vuelve a intentarlo.';
     displayStatus(message);
     showEndGamePopup(won);
+
 }
+
+
 
 function showEndGamePopup(won) {
     const modal = document.getElementById('endgame-modal');
     const message = document.getElementById('endgame-message');
-    const playAgainButton = document.getElementById('play-again-button');
+    const playAgainButton = document.getElementById('play-again-button'); // Asegúrate de que este es el ID correcto
 
     message.textContent = won ? '¡Felicidades, has ganado!' : 'Perdiste, vuelve a intentarlo.';
     modal.style.display = "flex";
 
+
     playAgainButton.onclick = function() {
-        window.location.href = 'index.html'; // Redirecciona al usuario a index.html
+        touchSound.play(); // Reproduce el sonido de toque
+        setTimeout(function() { // Agrega un pequeño retraso para permitir que el sonido se inicie antes de cambiar de página
+            window.location.href = 'index.html'; // Redirecciona al usuario a index.html
+        }, 200);
     };
 }
 
@@ -152,9 +210,21 @@ function showEndGamePopup(won) {
 function restartGame() {
     selectedCards = [];
     matchesFound = 0;
+    clearInterval(activeInterval);
+    
+    // Detener todos los sonidos
+    backgroundMusic.pause();
+    backgroundMusic.currentTime = 0;
+    victorySound.pause();
+    victorySound.currentTime = 0;
+    defeatSound.pause();
+    defeatSound.currentTime = 0;
+
     createBoard();
     gameSequence();
 }
+
+
 
 //Call this function at the beginning to set up event listeners for the modal
 function setupModal() {
@@ -166,6 +236,8 @@ function setupModal() {
         }
     };
 }
+
+
 
 window.onload = function() {
     createBoard();
