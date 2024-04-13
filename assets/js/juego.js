@@ -9,10 +9,12 @@ const touchSound = new Audio('assets/audio/toque.mp3');
 
 document.addEventListener('DOMContentLoaded', (event) => {
     const playButton = document.getElementById('play-button');
-    if(playButton) {
+    if (playButton) {
         playButton.addEventListener('click', function() {
+            // Inicia la música de fondo
+            backgroundMusic.play();
+
             // Reproduce el sonido de toque y redirecciona
-            const touchSound = new Audio('assets/audio/toque.mp3');
             touchSound.play();
             setTimeout(function() {
                 window.location.href = 'juego.html';
@@ -20,6 +22,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     }
 });
+
 
 
 
@@ -215,10 +218,6 @@ function showEndGamePopup(won) {
     };
 }
 
-
-
-
-
 function restartGame() {
     selectedCards = [];
     matchesFound = 0;
@@ -236,20 +235,14 @@ function restartGame() {
     gameSequence();
 }
 
-
-
 //Call this function at the beginning to set up event listeners for the modal
 function setupModal() {
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
+    function closeModal() {
         const modal = document.getElementById('endgame-modal');
-        if (event.target === modal) {
-            modal.style.display = "none";
-        }
-    };
+        modal.style.display = "none";
+    }
+    
 }
-
-
 
 window.onload = function() {
     createBoard();
