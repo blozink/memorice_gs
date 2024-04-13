@@ -51,6 +51,7 @@ function shuffleArray(array) {
 }
 
 function createBoard() {
+    backgroundMusic.play();
     shuffleArray(cards);
     const gameBoard = document.getElementById('game-board').querySelector('.row');
     gameBoard.innerHTML = '';
@@ -119,7 +120,6 @@ function checkForMatch() {
 let activeInterval; // Referencia global para el intervalo activo
 
 function startCountdown(seconds, messagePrefix, callback) {
-    backgroundMusic.play();
     let counter = seconds;
     displayStatus(`${messagePrefix} `, counter);
     clearInterval(activeInterval); // Limpiar cualquier intervalo previo
