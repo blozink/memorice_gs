@@ -27,45 +27,46 @@
     <link rel="stylesheet" href="assets/css/estilos.css" />
   </head>
   <body>
-    <section id="Acerca-de-mi" class="container text-center my-5">
-      <img src="./assets/img/GS.png" alt="gs" width="500px" />
-    </section>
-
-
-    <!-- Diálogo personalizado para el iniciar del juego -->
-    <div id="ready-modal" class="modal" style="display: none">
-      <div class="modal-content text-center">
-        <p id="start-game-text">¿Estás list@ para jugar?</p>
-        <button id="start-game-button">Jugar</button>
-      </div>
-    </div>
-
-    
-
-    <!-- Diálogo personalizado para el final del juego -->
-    <div id="endgame-modal" class="modal" style="display: none">
-      <div class="modal-content">
-        <p id="endgame-message"></p>
-        <button id="play-again-button">Volver a jugar</button>
-      </div>
-    </div>
-
-    <section id="game-status" class="container text-center my-5"></section>
-
-    <!-- Sección del juego de memorice -->
-    <section id="game-board" class="container">
+    <section class="contenedor">
       <div class="row">
-        <!-- Las cartas del juego se generarán dinámicamente aquí -->
-      </div>
-    </section>
+        <section id="Acerca-de-mi" class="container text-center my-5">
+          <img src="./assets/img/GS.png" alt="gs" width="500px" />
+        </section>
 
-    <section class="text-center text-light p-4 footer">
-      <img src="./assets/img/footer.png" alt="gs" width="500px" />
-      <!-- Botón de Reinicio -->
+        <!-- Diálogo personalizado para el iniciar del juego -->
+        <div id="ready-modal" class="modal" style="display: none">
+          <div class="modal-content text-center">
+            <p id="start-game-text">¿Estás list@ para jugar?</p>
+            <button id="start-game-button">Jugar</button>
+          </div>
+        </div>
+
+        <!-- Diálogo personalizado para el final del juego -->
+        <div id="endgame-modal" class="modal" style="display: none">
+          <div class="modal-content">
+            <p id="endgame-message"></p>
+            <button id="play-again-button">Volver a jugar</button>
+          </div>
+        </div>
+
+        <section id="game-status" class="container text-center my-5"></section>
+
+        <!-- Sección del juego de memorice -->
+        <section id="game-board" class="container">
+          <div class="row">
+            <!-- Las cartas del juego se generarán dinámicamente aquí -->
+          </div>
+        </section>
+
+        <section class="text-center text-light p-4 footer">
+          <img src="./assets/img/footer.png" alt="gs" width="500px" />
+          <!-- Botón de Reinicio -->
+        </section>
+      </div>
     </section>
 
     <footer
-      class="text-center text-light p-4"
+      class="text-center text-light p-4 fixed-bottom"
       style="background-color: #de3310"
     >
       <h3 class="text-light">Nueva_Alameda</h3>

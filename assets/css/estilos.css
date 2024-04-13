@@ -2,6 +2,17 @@ body {
   font-family: "Raleway", sans-serif;
 }
 
+body, html {
+  height: 100%;
+  margin: 0;
+}
+.contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
 /* Estilos para las cartas y las imágenes de fondo */
 .card {
   cursor: pointer;
@@ -212,3 +223,4 @@ a {
       font-size: 22px; /* Ajusta el tamaño del número para que aún destaque, pero sea adecuado para pantallas pequeñas */
   }
 }
+
