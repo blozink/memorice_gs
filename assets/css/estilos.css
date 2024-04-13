@@ -158,6 +158,25 @@ a {
   margin: 4px 2px;
   cursor: pointer;
 }
+#start-game-button{
+  background-color: #de3310;; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+#start-game-text{
+  font-size: 24px; /* Ajusta el tamaño del texto */
+  text-align: center; /* Asegura que el texto esté centrado */
+  margin: 20px 0; /* Añade algo de margen arriba y abajo para separarlo de otros elementos */
+}
+
 #endgame-message {
   font-size: 24px; /* Ajusta el tamaño del texto */
   text-align: center; /* Asegura que el texto esté centrado */

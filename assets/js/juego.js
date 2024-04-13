@@ -51,7 +51,6 @@ function shuffleArray(array) {
 }
 
 function createBoard() {
-    backgroundMusic.play();
     shuffleArray(cards);
     const gameBoard = document.getElementById('game-board').querySelector('.row');
     gameBoard.innerHTML = '';
@@ -148,7 +147,25 @@ function gameSequence() {
     });
 }
 
-
+document.addEventListener('DOMContentLoaded', (event) => {
+    const readyModal = document.getElementById('ready-modal');
+    const startGameButton = document.getElementById('start-game-button');
+  
+    if (readyModal && startGameButton) {
+      readyModal.style.display = 'flex'; // Muestra la ventana emergente
+  
+      startGameButton.addEventListener('click', function() {
+        readyModal.style.display = 'none'; // Oculta la ventana emergente cuando se presiona el botón de jugar
+        touchSound.play();
+        backgroundMusic.play()
+        gameSequence();
+        
+        
+        // Aquí puedes agregar cualquier lógica adicional para iniciar el juego
+      });
+    }
+  });
+  
 
 
 
@@ -246,7 +263,6 @@ function setupModal() {
 
 window.onload = function() {
     createBoard();
-    gameSequence();
     setupModal(); // Setup modal listeners
 };
 
